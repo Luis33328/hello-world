@@ -1,0 +1,101 @@
+{% extends 'base.html' %}
+{% block title %} Login {% endblock %}
+{% block content %}
+        <div class="header">
+            <div class="he1">
+                {% load static %}<img  src="{% static "images/book.png" %}" class="log" />
+
+                <a href="">INÍCIO</a>
+                <a href="">CONTATO</a>
+                <a href="">SOBRE</a>
+            </div>
+
+        </div>
+
+        <div class="container">
+            <form class="form" onsubmit="return valid()">
+                <h1>Iniciar Sessão</h1>
+                <div id="error">Credenciais incorretas</div>
+                <h5>Login</h5>
+                <p><input id="user" type="text" name="user" placeholder="Digite seu login" /></p>
+                <h5>Senha</h5>
+                <input id="pass" type="password" name="password" placeholder="Digite sua senha" />
+                <input type="submit" value="ENTRAR" />
+                <a href="esq_senha.html"> Esqueceu sua senha?</a>
+            </form>
+
+            <div class="box">
+
+            </div>
+        </div>
+
+        <div class="footer">
+
+        </div>
+
+        <script>
+            var d = document,
+                er = d.querySelector("#error");
+
+            // simple transition with javascript
+            function jsTransitionScale(elm, width, height, paddingH, speed) {
+                er.style.display = "block";
+
+                var FPS = 60;
+
+                var original_width = elm.offsetWidth,
+                    original_height = elm.offsetHeight;
+                    original_paddingH = elm.offsetHeight;
+
+
+                var width_range = width - original_width,
+                    height_range = height - original_height;
+                    paddingH_range = paddingH - original_paddingH;
+
+                var timeout = speed / FPS,
+                    width_change = width_range / FPS,
+                    height_change = height_range / FPS;
+                    paddingH_change = paddingH_range / FPS;
+
+                var finish = new Date().getTime() + speed;
+
+                var begin = setInterval(function () {
+                    original_width += width_change;
+                    original_height += height_change;
+                    original_paddingH += paddingH_change;
+
+                    elm.style.width = original_width + "px";
+                    elm.style.height = original_height + "px";
+                    elm.style.padding = original_paddingH + "px";
+
+                    if (new Date().getTime() >= finish) {
+                        elm.style.width = width;
+                        elm.style.height = height;
+                        elm.style.padding = paddingH;
+                        clearInterval(begin);
+                    }
+                }, timeout);
+
+
+            }
+
+
+            function valid(){
+                //alert("oi");
+                var user = document.getElementById("user");
+                var password = document.getElementById("pass");
+
+                if(user.value.length < 8 || password.value.length < 8) {
+                    jsTransitionScale(er, 300, 60, 16, 30);
+                    return false;
+                }
+                else if(user.value.length >= 8 && password.value.length >= 8) {
+                    window.location.href = "home.html";
+                    return false;
+                }
+
+
+            }
+        </script>
+
+{% endblock %}

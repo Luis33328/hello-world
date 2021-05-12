@@ -1,0 +1,81 @@
+{% extends 'base.html' %}
+{% block title %} Grade Horária {% endblock %}
+{% block content %}
+        <div class="header">
+            <div class="he2">
+                {% load static %}<img  src="{% static "images/book.png" %}" />
+                <a href="">INÍCIO</a>
+                <a href="">CONTATO</a>
+                <a href="">SOBRE</a>
+                {% load static %}<img class="bell" src="{% static "images/bell.svg" %}" width="20px" height="20px" >
+                {% load static %}<img class="user" src="{% static "images/user.svg" %}" width="25px" height="25px" >
+                {% if user.is_authenticated %}
+                <h4>{{ user.username }}</h4>
+                {% endif %}
+                <a type="logout" href="login.html">Logout</a>
+
+            </div>
+        </div>
+
+        <div class="container">
+            <nav class="menu">
+                <ul>
+                    <li><a href="login.html">Home</a></li>
+                    <li><a href="">Manual</a></li>
+                    <li><a href="">Google for Education</a></li>
+                    <li><a href="">Volta às aulas</a></li>
+                    <li><a href="index.html">Acadêmico</a></li>
+                    <li><a href="">Área internacional</a></li>
+                    <li><a href="">Sistema de Avaliação</a></li>
+                    <li><a href="">Biblioteca</a></li>
+                    <li><a href="">Calendário</a></li>
+                    <li><a href="">Financeiro</a></li>
+                    <li><a href="">Circulares</a></li>
+                    <li><a href="">Comunicados</a></li>
+                    <li><a href="">Educação Digital</a></li>
+                </ul>
+            </nav>
+
+            <div class="blue">
+            <h2>Disciplinas do Curso</h2>
+            <table class="blueTable">
+                    <thead>
+                        <tr>
+                            <th>Título da Disciplina</th>
+                            <th>Turno</th>
+                            <th>Dia da Semana</th>
+                            <th>Semestre</th>
+                            <th>Status</th>
+                            <th>Local</th>
+                            <th>Ações</th>
+                        </tr>
+                    </thead>
+
+                    <tbody>
+                        {% for listamatricula in disciplinas %}
+                        <tr>
+                            <td>{{listamatricula.disciplina.titulo}}</td>
+                            <td>{{listamatricula.disciplina.turno}}</td>
+                            <td>{{listamatricula.disciplina.diadasemana}}</td>
+                            <td>{{listamatricula.semestre}}</td>
+                            <td>{{listamatricula.status}}</td>
+                            <td>{{listamatricula.disciplina.local}}</td>
+                            <td>
+                                <a href="https://us.bbcollab.com/collab/ui/scheduler/login"><span><i class="fas fa-chalkboard-teacher" title="Entrar na aula"></i></span></a>
+                                <a href="fazerMatricula/{{listamatricula.id}}"><i class="fas fa-user-graduate" title="Realizar Matricula"></i></a></td>
+                            </td>
+                        </tr>
+                        {% endfor %}
+                    </tbody>
+                    </tr>
+                </table>
+        </div>
+        </div>
+
+
+
+        <div class="footer">
+
+        </div>
+{% endblock %}
+

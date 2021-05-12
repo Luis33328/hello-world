@@ -1,0 +1,19 @@
+{% extends 'base.html' %}
+{% block title %} Esqueci Minha Senha {% endblock %}
+{% block content %}
+        <div class="header">
+            <div class="he1">
+                {% load static %}<img  src="{% static "images/book.png" %}" class="log" />
+                <a href="login.html">INÍCIO</a>
+                <a href="">CONTATO</a>
+                <a href="">SOBRE</a>
+            </div>
+        </div>
+
+        <div class="forgot">
+            <h1>Recuperação de Senha</h1>
+            <h4>Digite seu e-mail de recuperação</h4>
+            <input type="text" placeholder="abc@example.com" />
+            <input type="submit" value="Redefinir Senha" />
+        </div>
+{% endblock %}
